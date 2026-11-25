@@ -20,7 +20,7 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
 .item{padding:10px 0;border-top:1px solid #2c3150;display:flex;align-items:center;gap:10px}.item:first-child{border-top:0}.item small{margin-inline-start:auto;color:var(--gold)}
 .small-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
 @media(min-width:700px){body{max-width:720px;margin:auto}}
-</style>
+.module-icon{width:42px;height:42px;flex:none;object-fit:cover;border-radius:13px;border:1px solid rgba(255,255,255,.2);box-shadow:0 5px 18px #0008}.top{gap:10px}.brand{flex:1;min-width:0}</style>
 <script>
 (function(){
  const KEY='LEONIDA_HQ_LANGUAGE';
@@ -42,7 +42,7 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
 </script>
 </head>
 <body>
-<div class="top"><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
+<div class="top"><img class="module-icon" src="assets/icons/02_Goal_Tracker.webp" alt=""><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
 <section class="panel"><h1 data-ar="متعقب الأهداف" data-en="Goal tracker">Goal tracker</h1><div style="display:flex;justify-content:space-between;gap:8px"><b id="pct">0%</b><span class="muted" id="count">0 / 35</span></div><div class="bar"><i id="progress"></i></div><button id="resetGoals" class="alt" type="button" data-ar="إعادة ضبط" data-en="Reset">Reset</button></section>
 <section class="panel"><div id="goalList"></div></section><p class="small-note" data-ar="علّم كل هدف عند إنجازه. تقدمك محفوظ على الجهاز." data-en="Tick each goal when done. Your progress is saved on this device.">Tick each goal when done. Your progress is saved on this device.</p>
 <script>
