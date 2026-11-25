@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080914"><title>LEONIDA HQ — Dashboard</title>
+<style>
+:root{--bg:#080914;--panel:#15172b;--line:#34385d;--cyan:#39d9ff;--pink:#f13dce;--gold:#ffc857;--text:#f7f7ff;--muted:#aeb4d1}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}
+body{padding:12px;background:radial-gradient(circle at 80% 0,#2a1450 0,transparent 38%),var(--bg)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.brand{font-weight:900;letter-spacing:1.2px;font-size:16px;text-shadow:0 0 12px var(--cyan)}
+.lang,button,.btn{border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(100deg,#146c9c,#7143a8);color:white;text-decoration:none;font-weight:800;font-size:14px;cursor:pointer}
+.lang{border:1px solid #6a6e9a;background:#171b32;border-radius:22px;padding:8px 14px}
+.panel{background:linear-gradient(145deg,rgba(29,31,59,.96),rgba(13,16,34,.96));border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 8px 24px #0007}
+h1,h2,h3,p{margin:0}h1{font-size:22px;margin:4px 0 8px}h2{font-size:17px;margin:4px 0 8px}.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.btn.full,button.full{display:flex;width:100%;justify-content:center;margin-top:8px}button.alt,.btn.alt{background:#282c49;border:1px solid #50577d}button.danger{background:#71364b}
+input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid #41496d;border-radius:11px;padding:11px;margin:5px 0;font:inherit}input[type=checkbox]{width:20px;height:20px;margin:0;accent-color:#24cdec}label{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{background:#0e1328;border:1px solid #30395d;border-radius:14px;padding:12px}.stat strong{font-size:24px;color:var(--cyan);display:block}
+.bar{height:9px;background:#30334d;border-radius:20px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));border-radius:20px}
+.item{padding:10px 0;border-top:1px solid #2c3150;display:flex;align-items:center;gap:10px}.item:first-child{border-top:0}.item small{margin-inline-start:auto;color:var(--gold)}
+.small-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
+@media(min-width:700px){body{max-width:720px;margin:auto}}
+</style>
+<script>
+(function(){
+ const KEY='LEONIDA_HQ_LANGUAGE';
+ function cookieLang(){try{const m=document.cookie.match(new RegExp('(?:^|; )'+KEY+'=(ar|en)'));return m?m[1]:null}catch(e){return null}}
+ function readLang(){try{const v=localStorage.getItem(KEY);if(v==='ar'||v==='en')return v}catch(e){}return cookieLang()||'en'}
+ let lang=readLang();
+ window.LHQ_T=(ar,en)=>lang==='ar'?ar:en;
+ window.LHQ_LANG=()=>lang;
+ window.LHQ_APPLY=function(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-ar][data-en]').forEach(el=>{el.textContent=el.getAttribute(lang==='ar'?'data-ar':'data-en')});
+  document.querySelectorAll('[data-ph-ar][data-ph-en]').forEach(el=>{el.placeholder=el.getAttribute(lang==='ar'?'data-ph-ar':'data-ph-en')});
+  const b=document.getElementById('languageToggle');if(b)b.textContent=lang==='ar'?'EN':'ع';
+  if(typeof window.LHQ_REFRESH==='function')window.LHQ_REFRESH();
+ };
+ window.LHQ_TOGGLE=function(){lang=lang==='en'?'ar':'en';try{localStorage.setItem(KEY,lang)}catch(e){}try{document.cookie=KEY+'='+lang+';path=/;max-age=31536000;SameSite=Lax'}catch(e){}window.LHQ_APPLY();};
+ document.addEventListener('DOMContentLoaded',window.LHQ_APPLY);
+})();
+</script>
+</head>
+<body>
+<div class="top"><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
+<section class="panel"><div class="muted" data-ar="مركز اللعب" data-en="GAME HUB">GAME HUB</div><h1 data-ar="لوحة القيادة" data-en="Dashboard">Dashboard</h1><p class="muted" data-ar="تقدمك وجلساتك في مكان واحد." data-en="Your progress and sessions in one place.">Your progress and sessions in one place.</p></section>
+<section class="grid"><div class="stat"><strong id="doneCount">0</strong><span class="muted" data-ar="أهداف مكتملة" data-en="Goals done">Goals done</span></div><div class="stat"><strong id="progressPct">0%</strong><span class="muted" data-ar="التقدم" data-en="Progress">Progress</span></div></section>
+<section class="panel"><h2 data-ar="ابدأ اللعب" data-en="Jump back in">Jump back in</h2><a class="btn full" href="https://sixintelhq.com/map" target="_blank" rel="noopener" data-ar="افتح الخريطة" data-en="Open map">Open map</a><a class="btn full alt" href="https://www.youtube.com/results?search_query=GTA+V+gameplay" target="_blank" rel="noopener" data-ar="شاهد الفيديوهات" data-en="Watch videos">Watch videos</a></section>
+<p class="small-note" data-ar="تطبيق جماهيري مستقل، غير تابع لـ Rockstar Games." data-en="Independent fan-made app. Not affiliated with Rockstar Games.">Independent fan-made app. Not affiliated with Rockstar Games.</p>
+<script>
+const GOAL_WEIGHTS=JSON.parse('[50, 6, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]');
+function refreshDash(){let a=[];try{a=JSON.parse(localStorage.getItem('lhq100v2')||'[]')}catch(e){}if(!Array.isArray(a))a=[];let done=0,progress=0;GOAL_WEIGHTS.forEach((w,i)=>{if(a[i]){done++;progress+=w}});document.getElementById('doneCount').textContent=done;document.getElementById('progressPct').textContent=progress+'%';}
+document.getElementById('languageToggle').addEventListener('click',LHQ_TOGGLE);window.LHQ_REFRESH=refreshDash;refreshDash();LHQ_APPLY();
+</script></body></html>
