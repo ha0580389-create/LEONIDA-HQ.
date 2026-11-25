@@ -20,7 +20,7 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
 .item{padding:10px 0;border-top:1px solid #2c3150;display:flex;align-items:center;gap:10px}.item:first-child{border-top:0}.item small{margin-inline-start:auto;color:var(--gold)}
 .small-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
 @media(min-width:700px){body{max-width:720px;margin:auto}}
-</style>
+.module-icon{width:42px;height:42px;flex:none;object-fit:cover;border-radius:13px;border:1px solid rgba(255,255,255,.2);box-shadow:0 5px 18px #0008}.top{gap:10px}.brand{flex:1;min-width:0}</style>
 <script>
 (function(){
  const KEY='LEONIDA_HQ_LANGUAGE';
@@ -42,7 +42,7 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
 </script>
 </head>
 <body>
-<div class="top"><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
+<div class="top"><img class="module-icon" src="assets/icons/04_Backup_Restore.webp" alt=""><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
 <section class="panel"><h1 data-ar="حفظ واستعادة" data-en="Backup & restore">Backup & restore</h1><p class="muted" data-ar="نزّل نسخة من تقدمك أو استعد نسخة سابقة." data-en="Download your progress or restore an earlier backup.">Download your progress or restore an earlier backup.</p><button id="downloadBackup" class="full" type="button" data-ar="تنزيل النسخة الاحتياطية" data-en="Download backup">Download backup</button></section>
 <section class="panel"><label for="backupFile" data-ar="اختر ملف النسخة" data-en="Choose backup file">Choose backup file</label><input id="backupFile" type="file" accept=".json,application/json"><button id="restoreBackup" class="full alt" type="button" data-ar="استعادة البيانات" data-en="Restore data">Restore data</button><div id="backupStatus" class="small-note" aria-live="polite"></div></section>
 <p class="small-note" data-ar="النسخة تحفظ البيانات الموجودة على هذا الجهاز فقط. احتفظ بالملف لنقلها إلى جهاز آخر." data-en="The backup contains data saved on this device. Keep the file to move it to another device.">The backup contains data saved on this device. Keep the file to move it to another device.</p>
