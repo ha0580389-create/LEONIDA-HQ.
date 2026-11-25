@@ -32,3 +32,12 @@ Autoplay can be blocked by Android WebView/browser policy. The page starts playb
 
 ## Important
 This is an unofficial fan project and is not affiliated with Rockstar Games or Take-Two Interactive. GTA names and imagery belong to their respective owners. No game files or copyrighted video files are hosted here.
+
+## Free static hosting (one-time setup)
+
+A GitHub Pages deployment workflow is included at `.github/workflows/deploy-pages.yml`. Before the first deployment, open **Repository Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. Then push any change to `main`; the site workflow will publish the root `index.html` and all six section pages.
+
+Expected project-site base URL:
+`https://ha0580389-create.github.io/LEONIDA-HQ./`
+
+The YouTube search Worker is source code only. It is not live until deployed to Cloudflare and configured with a secret named `YOUTUBE_API_KEY`.
