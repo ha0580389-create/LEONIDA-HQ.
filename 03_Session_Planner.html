@@ -20,7 +20,7 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
 .item{padding:10px 0;border-top:1px solid #2c3150;display:flex;align-items:center;gap:10px}.item:first-child{border-top:0}.item small{margin-inline-start:auto;color:var(--gold)}
 .small-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
 @media(min-width:700px){body{max-width:720px;margin:auto}}
-.module-icon{width:42px;height:42px;flex:none;object-fit:cover;border-radius:13px;border:1px solid rgba(255,255,255,.2);box-shadow:0 5px 18px #0008}.top{gap:10px}.brand{flex:1;min-width:0}</style>
+.module-icon{width:42px;height:42px;flex:none;object-fit:cover;border-radius:13px;border:1px solid rgba(255,255,255,.2);box-shadow:0 5px 18px #0008}.top{gap:10px}.brand{flex:1;min-width:0}.privacy-shortcut{display:inline-flex;align-items:center;justify-content:center;color:#aeb4d1;border:1px solid #41496d;background:#11172a;border-radius:999px;padding:7px 9px;text-decoration:none;font-size:10px;font-weight:800;white-space:nowrap}</style>
 <script>
 (function(){
  const KEY='LEONIDA_HQ_LANGUAGE';
@@ -42,7 +42,7 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
 </script>
 </head>
 <body>
-<div class="top"><img class="module-icon" src="assets/icons/03_Session_Planner.webp" alt=""><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
+<div class="top"><img class="module-icon" src="assets/icons/03_Session_Planner.webp" alt=""><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><a class="privacy-shortcut" href="privacy-policy.html">Privacy</a><button id="languageToggle" class="lang" type="button">ع</button></div>
 <section class="panel"><h1 data-ar="مخطط الجلسة" data-en="Session planner">Session planner</h1><label for="goalName" data-ar="هدف الجلسة" data-en="Session goal">Session goal</label><input id="goalName" maxlength="70" data-ph-ar="مثال: إنهاء مهمة" data-ph-en="e.g. Finish a mission" placeholder="e.g. Finish a mission">
 <div class="grid"><div><label for="duration" data-ar="المدة" data-en="Duration">Duration</label><input id="duration" type="number" min="1" max="600" step="1" value="30" inputmode="numeric"></div><div><label for="unit" data-ar="الوحدة" data-en="Unit">Unit</label><select id="unit"><option value="seconds" data-ar="ثوانٍ" data-en="Seconds">Seconds</option><option value="minutes" data-ar="دقائق" data-en="Minutes">Minutes</option></select></div></div>
 <label for="note" data-ar="ملاحظة (اختياري)" data-en="Note (optional)">Note (optional)</label><input id="note" maxlength="80" data-ph-ar="ملاحظة قصيرة" data-ph-en="Short note" placeholder="Short note"><div class="grid"><button id="startTimer" type="button" data-ar="ابدأ المؤقت" data-en="Start timer">Start timer</button><button id="saveSession" class="alt" type="button" data-ar="احفظ الجلسة" data-en="Save session">Save session</button></div>
