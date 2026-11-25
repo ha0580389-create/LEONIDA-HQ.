@@ -1,0 +1,54 @@
+name: Publish six-section source files
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/source/**'
+      - '.github/workflows/publish-sections.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Rebuild and validate source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            .github/source/sections.zip.b64 \
+            .github/source/part-02.b64 \
+            .github/source/part-03.b64 \
+            .github/source/part-04.b64 \
+            .github/source/part-05.b64 \
+            | base64 --decode > /tmp/leonida-sections.zip
+          unzip -t /tmp/leonida-sections.zip
+          unzip -o /tmp/leonida-sections.zip -d /tmp/leonida-source
+          test -s /tmp/leonida-source/01_Dashboard.html
+          test -s /tmp/leonida-source/02_Goal_Tracker.html
+          test -s /tmp/leonida-source/03_Session_Planner.html
+          test -s /tmp/leonida-source/04_Backup_Restore.html
+          test -s /tmp/leonida-source/05_Interactive_Map.html
+          test -s /tmp/leonida-source/06_GTA_V_Videos.html
+          test -s /tmp/leonida-source/youtube-search-worker.js
+
+      - name: Add app section files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/leonida-source/* .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 01_Dashboard.html 02_Goal_Tracker.html 03_Session_Planner.html 04_Backup_Restore.html 05_Interactive_Map.html 06_GTA_V_Videos.html README_SETUP.txt youtube-search-worker.js
+          if git diff --cached --quiet; then
+            echo "No section changes to commit."
+            exit 0
+          fi
+          git commit -m "Add six LEONIDA HQ app sections"
+          git push
