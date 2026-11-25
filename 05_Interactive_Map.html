@@ -1,26 +1,28 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080914"><title>LEONIDA HQ — Interactive Map</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080914">
+<title>LEONIDA HQ — Interactive Map</title>
 <style>
-:root{--bg:#080914;--panel:#15172b;--line:#34385d;--cyan:#39d9ff;--pink:#f13dce;--gold:#ffc857;--text:#f7f7ff;--muted:#aeb4d1}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}
-body{padding:12px;background:radial-gradient(circle at 80% 0,#2a1450 0,transparent 38%),var(--bg)}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.brand{font-weight:900;letter-spacing:1.2px;font-size:16px;text-shadow:0 0 12px var(--cyan)}
-.lang,button,.btn{border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(100deg,#146c9c,#7143a8);color:white;text-decoration:none;font-weight:800;font-size:14px;cursor:pointer}
-.lang{border:1px solid #6a6e9a;background:#171b32;border-radius:22px;padding:8px 14px}
-.panel{background:linear-gradient(145deg,rgba(29,31,59,.96),rgba(13,16,34,.96));border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 8px 24px #0007}
-h1,h2,h3,p{margin:0}h1{font-size:22px;margin:4px 0 8px}h2{font-size:17px;margin:4px 0 8px}.muted{color:var(--muted);font-size:12px;line-height:1.5}
-.btn.full,button.full{display:flex;width:100%;justify-content:center;margin-top:8px}button.alt,.btn.alt{background:#282c49;border:1px solid #50577d}button.danger{background:#71364b}
-input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid #41496d;border-radius:11px;padding:11px;margin:5px 0;font:inherit}input[type=checkbox]{width:20px;height:20px;margin:0;accent-color:#24cdec}label{font-size:13px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{background:#0e1328;border:1px solid #30395d;border-radius:14px;padding:12px}.stat strong{font-size:24px;color:var(--cyan);display:block}
-.bar{height:9px;background:#30334d;border-radius:20px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));border-radius:20px}
-.item{padding:10px 0;border-top:1px solid #2c3150;display:flex;align-items:center;gap:10px}.item:first-child{border-top:0}.item small{margin-inline-start:auto;color:var(--gold)}
-.small-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
-@media(min-width:700px){body{max-width:720px;margin:auto}}
-.module-icon{width:42px;height:42px;flex:none;object-fit:cover;border-radius:13px;border:1px solid rgba(255,255,255,.2);box-shadow:0 5px 18px #0008}.top{gap:10px}.brand{flex:1;min-width:0}.privacy-shortcut{display:inline-flex;align-items:center;justify-content:center;color:#aeb4d1;border:1px solid #41496d;background:#11172a;border-radius:999px;padding:7px 9px;text-decoration:none;font-size:10px;font-weight:800;white-space:nowrap}</style>
+:root{--bg:#080914;--line:#34385d;--cyan:#39d9ff;--gold:#ffc857;--text:#f7f7ff;--muted:#aeb4d1}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font:14px Arial,sans-serif}
+body{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:0}
+.top{height:52px;min-height:52px;flex:0 0 52px;display:flex;align-items:center;gap:8px;padding:6px 9px;background:linear-gradient(100deg,#12162b,#201638);border-bottom:1px solid var(--line);box-shadow:0 3px 12px #0008}
+.module-icon{width:32px;height:32px;flex:none;object-fit:cover;border-radius:9px;border:1px solid #ffffff33}
+.brand{flex:1;min-width:0;font-size:15px;font-weight:900;letter-spacing:1px;text-shadow:0 0 10px var(--cyan);white-space:nowrap}
+.brand span{color:var(--gold)}
+.actions{display:flex;align-items:center;gap:6px}
+.open-full,.privacy-shortcut,.lang{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#fff;text-decoration:none;font-weight:800;white-space:nowrap}
+.open-full{padding:9px 10px;font-size:11px;background:linear-gradient(100deg,#146c9c,#7143a8);border:1px solid #6b83bd}
+.privacy-shortcut{padding:7px 8px;font-size:10px;color:var(--muted);background:#11172a;border:1px solid #41496d}
+.lang{padding:7px 9px;font-size:11px;background:#171b32;border:1px solid #6a6e9a;cursor:pointer}
+.map-frame{position:relative;flex:1 1 auto;min-height:0;width:100%;overflow:hidden;background:#090f20}
+.map-frame iframe{display:block;width:100%;height:100%;min-height:100%;border:0;background:#090f20}
+@media(max-width:360px){.top{gap:5px;padding-inline:6px}.module-icon{width:28px;height:28px}.brand{font-size:13px}.open-full{font-size:10px;padding:8px 7px}.privacy-shortcut{font-size:9px;padding:6px}.lang{padding:6px 7px}}
+</style>
 <script>
 (function(){
  const KEY='LEONIDA_HQ_LANGUAGE';
@@ -30,19 +32,38 @@ input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid 
  window.LHQ_T=(ar,en)=>lang==='ar'?ar:en;
  window.LHQ_LANG=()=>lang;
  window.LHQ_APPLY=function(){
-  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   document.querySelectorAll('[data-ar][data-en]').forEach(el=>{el.textContent=el.getAttribute(lang==='ar'?'data-ar':'data-en')});
-  document.querySelectorAll('[data-ph-ar][data-ph-en]').forEach(el=>{el.placeholder=el.getAttribute(lang==='ar'?'data-ph-ar':'data-ph-en')});
-  const b=document.getElementById('languageToggle');if(b)b.textContent=lang==='ar'?'EN':'ع';
-  if(typeof window.LHQ_REFRESH==='function')window.LHQ_REFRESH();
+  const b=document.getElementById('languageToggle');
+  if(b)b.textContent=lang==='ar'?'EN':'ع';
  };
- window.LHQ_TOGGLE=function(){lang=lang==='en'?'ar':'en';try{localStorage.setItem(KEY,lang)}catch(e){}try{document.cookie=KEY+'='+lang+';path=/;max-age=31536000;SameSite=Lax'}catch(e){}window.LHQ_APPLY();};
+ window.LHQ_TOGGLE=function(){
+  lang=lang==='en'?'ar':'en';
+  try{localStorage.setItem(KEY,lang)}catch(e){}
+  try{document.cookie=KEY+'='+lang+';path=/;max-age=31536000;SameSite=Lax'}catch(e){}
+  window.LHQ_APPLY();
+ };
  document.addEventListener('DOMContentLoaded',window.LHQ_APPLY);
 })();
 </script>
 </head>
 <body>
-<div class="top"><img class="module-icon" src="assets/icons/05_Interactive_Map.webp" alt=""><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><a class="privacy-shortcut" href="privacy-policy.html">Privacy</a><button id="languageToggle" class="lang" type="button">ع</button></div>
-<section class="panel"><h1 data-ar="الخريطة التفاعلية" data-en="Interactive map">Interactive map</h1><p class="muted" data-ar="عند اختيار أي خريطة، ستُفتح على متصفح الهاتف خارج التطبيق." data-en="Choose a map to open it in your phone browser outside the app.">Choose a map to open it in your phone browser outside the app.</p><a class="btn full" href="intent://sixintelhq.com/map#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url=https%3A%2F%2Fsixintelhq.com%2Fmap;end" data-ar="فتح خريطة Six Intel خارج التطبيق ↗" data-en="Open Six Intel map externally ↗">Open Six Intel map externally ↗</a></section>
-<section class="panel"><h2 data-ar="خرائط أخرى" data-en="More maps">More maps</h2><p class="muted" data-ar="هذه روابط خارجية. لن يتم تحميل مواقع الخرائط داخل التطبيق." data-en="These are external links. Map websites will not be loaded inside the app.">These are external links. Map websites will not be loaded inside the app.</p><a class="btn full alt" href="intent://vice-map.com/map#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url=https%3A%2F%2Fvice-map.com%2Fmap;end" data-ar="فتح Vice Map ↗" data-en="Open Vice Map ↗">Open Vice Map ↗</a><a class="btn full alt" href="intent://www.gtabase.com/gta-6/map/#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url=https%3A%2F%2Fwww.gtabase.com%2Fgta-6%2Fmap%2F;end" data-ar="فتح GTABase ↗" data-en="Open GTABase ↗">Open GTABase ↗</a><p class="small-note"><span data-ar="خرائط Six Intel HQ وVice Map وGTABase غير رسمية؛ حقوق المواد وأسماء المواقع تعود لأصحابها." data-en="Six Intel HQ, Vice Map and GTABase are unofficial resources; their materials and place names belong to their respective owners.">Six Intel HQ, Vice Map and GTABase are unofficial resources; their materials and place names belong to their respective owners.</span></p></section>
-<script>document.getElementById('languageToggle').addEventListener('click',LHQ_TOGGLE);LHQ_APPLY();</script></body></html>
+<header class="top">
+ <img class="module-icon" src="assets/icons/05_Interactive_Map.webp" alt="">
+ <div class="brand">LEONIDA <span>HQ</span></div>
+ <div class="actions">
+  <a class="open-full" href="intent://sixintelhq.com/map#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url=https%3A%2F%2Fsixintelhq.com%2Fmap;end" data-ar="فتح الخريطة كاملة ↗" data-en="Open full map ↗">Open full map ↗</a>
+  <a class="privacy-shortcut" href="privacy-policy.html">Privacy</a>
+  <button id="languageToggle" class="lang" type="button">ع</button>
+ </div>
+</header>
+<main class="map-frame" aria-label="GTA VI interactive map">
+ <iframe src="https://sixintelhq.com/embed" title="GTA VI interactive map" loading="eager" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</main>
+<script>
+document.getElementById('languageToggle').addEventListener('click',LHQ_TOGGLE);
+LHQ_APPLY();
+</script>
+</body>
+</html>
