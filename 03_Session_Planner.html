@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080914"><title>LEONIDA HQ — Session Planner</title>
+<style>
+:root{--bg:#080914;--panel:#15172b;--line:#34385d;--cyan:#39d9ff;--pink:#f13dce;--gold:#ffc857;--text:#f7f7ff;--muted:#aeb4d1}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}
+body{padding:12px;background:radial-gradient(circle at 80% 0,#2a1450 0,transparent 38%),var(--bg)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.brand{font-weight:900;letter-spacing:1.2px;font-size:16px;text-shadow:0 0 12px var(--cyan)}
+.lang,button,.btn{border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(100deg,#146c9c,#7143a8);color:white;text-decoration:none;font-weight:800;font-size:14px;cursor:pointer}
+.lang{border:1px solid #6a6e9a;background:#171b32;border-radius:22px;padding:8px 14px}
+.panel{background:linear-gradient(145deg,rgba(29,31,59,.96),rgba(13,16,34,.96));border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 8px 24px #0007}
+h1,h2,h3,p{margin:0}h1{font-size:22px;margin:4px 0 8px}h2{font-size:17px;margin:4px 0 8px}.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.btn.full,button.full{display:flex;width:100%;justify-content:center;margin-top:8px}button.alt,.btn.alt{background:#282c49;border:1px solid #50577d}button.danger{background:#71364b}
+input,textarea,select{width:100%;background:#090f20;color:#fff;border:1px solid #41496d;border-radius:11px;padding:11px;margin:5px 0;font:inherit}input[type=checkbox]{width:20px;height:20px;margin:0;accent-color:#24cdec}label{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{background:#0e1328;border:1px solid #30395d;border-radius:14px;padding:12px}.stat strong{font-size:24px;color:var(--cyan);display:block}
+.bar{height:9px;background:#30334d;border-radius:20px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));border-radius:20px}
+.item{padding:10px 0;border-top:1px solid #2c3150;display:flex;align-items:center;gap:10px}.item:first-child{border-top:0}.item small{margin-inline-start:auto;color:var(--gold)}
+.small-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
+@media(min-width:700px){body{max-width:720px;margin:auto}}
+</style>
+<script>
+(function(){
+ const KEY='LEONIDA_HQ_LANGUAGE';
+ function cookieLang(){try{const m=document.cookie.match(new RegExp('(?:^|; )'+KEY+'=(ar|en)'));return m?m[1]:null}catch(e){return null}}
+ function readLang(){try{const v=localStorage.getItem(KEY);if(v==='ar'||v==='en')return v}catch(e){}return cookieLang()||'en'}
+ let lang=readLang();
+ window.LHQ_T=(ar,en)=>lang==='ar'?ar:en;
+ window.LHQ_LANG=()=>lang;
+ window.LHQ_APPLY=function(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-ar][data-en]').forEach(el=>{el.textContent=el.getAttribute(lang==='ar'?'data-ar':'data-en')});
+  document.querySelectorAll('[data-ph-ar][data-ph-en]').forEach(el=>{el.placeholder=el.getAttribute(lang==='ar'?'data-ph-ar':'data-ph-en')});
+  const b=document.getElementById('languageToggle');if(b)b.textContent=lang==='ar'?'EN':'ع';
+  if(typeof window.LHQ_REFRESH==='function')window.LHQ_REFRESH();
+ };
+ window.LHQ_TOGGLE=function(){lang=lang==='en'?'ar':'en';try{localStorage.setItem(KEY,lang)}catch(e){}try{document.cookie=KEY+'='+lang+';path=/;max-age=31536000;SameSite=Lax'}catch(e){}window.LHQ_APPLY();};
+ document.addEventListener('DOMContentLoaded',window.LHQ_APPLY);
+})();
+</script>
+</head>
+<body>
+<div class="top"><div class="brand">LEONIDA <span style="color:#ffc857">HQ</span></div><button id="languageToggle" class="lang" type="button">ع</button></div>
+<section class="panel"><h1 data-ar="مخطط الجلسة" data-en="Session planner">Session planner</h1><label for="goalName" data-ar="هدف الجلسة" data-en="Session goal">Session goal</label><input id="goalName" maxlength="70" data-ph-ar="مثال: إنهاء مهمة" data-ph-en="e.g. Finish a mission" placeholder="e.g. Finish a mission">
+<div class="grid"><div><label for="duration" data-ar="المدة" data-en="Duration">Duration</label><input id="duration" type="number" min="1" max="600" step="1" value="30" inputmode="numeric"></div><div><label for="unit" data-ar="الوحدة" data-en="Unit">Unit</label><select id="unit"><option value="seconds" data-ar="ثوانٍ" data-en="Seconds">Seconds</option><option value="minutes" data-ar="دقائق" data-en="Minutes">Minutes</option></select></div></div>
+<label for="note" data-ar="ملاحظة (اختياري)" data-en="Note (optional)">Note (optional)</label><input id="note" maxlength="80" data-ph-ar="ملاحظة قصيرة" data-ph-en="Short note" placeholder="Short note"><div class="grid"><button id="startTimer" type="button" data-ar="ابدأ المؤقت" data-en="Start timer">Start timer</button><button id="saveSession" class="alt" type="button" data-ar="احفظ الجلسة" data-en="Save session">Save session</button></div>
+</section>
+<section class="panel" style="text-align:center"><div class="muted" data-ar="الوقت المتبقي" data-en="TIME LEFT">TIME LEFT</div><div id="clock" style="font-size:44px;font-weight:900;color:#39d9ff;margin:9px">00:30</div><div class="grid"><button id="pauseTimer" class="alt" type="button" data-ar="إيقاف مؤقت" data-en="Pause">Pause</button><button id="resetTimer" class="alt" type="button" data-ar="إعادة" data-en="Reset">Reset</button></div><div id="timerStatus" class="small-note" aria-live="polite"></div></section>
+<section class="panel"><h2 data-ar="جلساتك" data-en="Your sessions">Your sessions</h2><div id="sessions"></div></section>
+<script>
+let sessions=[];try{const x=JSON.parse(localStorage.getItem('lhq_sessions_v1')||'[]');if(Array.isArray(x))sessions=x}catch(e){}
+let initialSeconds=30,remainingSeconds=30,endAt=0,timerId=null;
+const $=id=>document.getElementById(id);
+function selectedSeconds(){const n=Number($('duration').value);if(!Number.isFinite(n)||n<1||n>600||!Number.isInteger(n))return 0;return n*($('unit').value==='minutes'?60:1)}
+function formatTime(total){const s=Math.max(0,Math.ceil(total));const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),r=s%60;return h?String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(r).padStart(2,'0'):String(m).padStart(2,'0')+':'+String(r).padStart(2,'0')}
+function showClock(){ $('clock').textContent=formatTime(remainingSeconds); }
+function updateTimer(){remainingSeconds=Math.max(0,Math.ceil((endAt-Date.now())/1000));showClock();if(remainingSeconds<=0){clearInterval(timerId);timerId=null;$('timerStatus').textContent=LHQ_T('انتهى الوقت','Time is up');}}
+function startTimer(){const sec=selectedSeconds();if(!sec){alert(LHQ_T('اكتب مدة صحيحة من 1 إلى 600.','Enter a valid duration from 1 to 600.'));return;}if(timerId)clearInterval(timerId);initialSeconds=remainingSeconds=sec;endAt=Date.now()+sec*1000;$('timerStatus').textContent=LHQ_T('المؤقت يعمل','Timer running');showClock();timerId=setInterval(updateTimer,200);}
+function pauseTimer(){if(timerId){remainingSeconds=Math.max(0,Math.ceil((endAt-Date.now())/1000));clearInterval(timerId);timerId=null;$('timerStatus').textContent=LHQ_T('تم الإيقاف المؤقت','Paused');showClock();}}
+function resetTimer(){if(timerId)clearInterval(timerId);timerId=null;remainingSeconds=initialSeconds;showClock();$('timerStatus').textContent=LHQ_T('تمت إعادة المؤقت','Timer reset');}
+function saveSessions(){try{localStorage.setItem('lhq_sessions_v1',JSON.stringify(sessions))}catch(e){}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderSessions(){const box=$('sessions');if(!sessions.length){box.textContent=LHQ_T('لا توجد جلسات بعد','No sessions yet');box.className='muted';return;}box.className='';box.innerHTML=sessions.map(x=>`<div class="item"><input type="checkbox" class="session-done" data-id="${Number(x.id)}" ${x.done?'checked':''} aria-label="Done"><span style="flex:1;min-width:0"><b>${esc(x.name)}</b><br><small>${formatTime(x.seconds)}${x.note?' · '+esc(x.note):''}</small></span><button type="button" class="danger delete-session" data-id="${Number(x.id)}" aria-label="Delete">×</button></div>`).join('');}
+function addSession(){const name=$('goalName').value.trim();const sec=selectedSeconds();if(!name){alert(LHQ_T('اكتب هدف الجلسة أولًا.','Enter a session goal first.'));$('goalName').focus();return;}if(!sec){alert(LHQ_T('اكتب مدة صحيحة من 1 إلى 600.','Enter a valid duration from 1 to 600.'));return;}sessions.unshift({id:Date.now(),name,seconds:sec,note:$('note').value.trim(),done:false});saveSessions();renderSessions();$('goalName').value='';$('note').value='';}
+$('startTimer').addEventListener('click',startTimer);$('pauseTimer').addEventListener('click',pauseTimer);$('resetTimer').addEventListener('click',resetTimer);$('saveSession').addEventListener('click',addSession);
+$('sessions').addEventListener('change',e=>{const el=e.target.closest('.session-done');if(!el)return;const id=Number(el.dataset.id);const row=sessions.find(x=>x.id===id);if(row){row.done=el.checked;saveSessions();}});
+$('sessions').addEventListener('click',e=>{const b=e.target.closest('.delete-session');if(!b)return;const id=Number(b.dataset.id);sessions=sessions.filter(x=>x.id!==id);saveSessions();renderSessions();});
+$('duration').addEventListener('change',()=>{if(!timerId){const s=selectedSeconds();if(s){initialSeconds=remainingSeconds=s;showClock();}}});$('unit').addEventListener('change',()=>{if(!timerId){const s=selectedSeconds();if(s){initialSeconds=remainingSeconds=s;showClock();}}});
+$('languageToggle').addEventListener('click',LHQ_TOGGLE);window.LHQ_REFRESH=renderSessions;showClock();renderSessions();LHQ_APPLY();
+</script></body></html>
