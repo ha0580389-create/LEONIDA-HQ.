@@ -35,6 +35,16 @@ h1{margin:17px 0 11px;font-size:clamp(32px,7.7vw,58px);letter-spacing:-1.8px;lin
 .card-bottom{margin-top:auto;padding-top:12px;display:flex;justify-content:space-between;align-items:center;color:var(--accent);font-size:10px;font-weight:1000;letter-spacing:1.2px}
 .arrow{font-size:17px;line-height:1}
 .footer{margin:24px 2px 4px;padding:15px 2px 5px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;color:#76819e;font-size:9px;letter-spacing:1px}
+.map-view{display:none;position:fixed;inset:0;z-index:1000;width:100%;height:100vh;height:100dvh;min-height:0;background:#080914;flex-direction:column;overflow:hidden}
+.map-toolbar{flex:0 0 auto;min-height:54px;display:flex;align-items:center;gap:8px;padding:7px 10px;background:linear-gradient(100deg,#12162b,#201638);border-bottom:1px solid #34385d}
+.map-title{flex:1;min-width:0;font-size:14px;font-weight:900;letter-spacing:.5px;color:#f7f7ff}
+.map-back,.map-open,.map-lang{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap;border:1px solid #50577d;border-radius:10px;padding:9px 10px;font-size:11px;font-weight:900;color:#fff;background:#282c49}
+.map-open{background:linear-gradient(100deg,#146c9c,#7143a8);border-color:#6b83bd}
+.map-lang{cursor:pointer;background:#171b32}
+.map-frame{display:block;flex:1 1 auto;width:100%;height:100%;min-height:0;border:0;background:#090f20}
+body.map-active{overflow:hidden}
+@media(max-width:370px){.map-toolbar{gap:5px;padding-inline:6px}.map-title{font-size:12px}.map-back,.map-open,.map-lang{padding:8px 7px;font-size:10px}}
+
 @media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{min-height:218px;padding:16px}.icon-wrap{width:88px;height:88px}.card-title{font-size:16px}.hero{min-height:270px}}
 @media(max-width:370px){.shell{padding:12px}.grid{gap:9px}.card{padding:10px;min-height:176px}.icon-wrap{width:65px;height:65px}.card-title{font-size:13px}.card-desc{font-size:10px}}
 </style>
@@ -57,15 +67,27 @@ h1{margin:17px 0 11px;font-size:clamp(32px,7.7vw,58px);letter-spacing:-1.8px;lin
 <a class="card" href="02_Goal_Tracker.html" style="--accent:#ffc76b"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/02_Goal_Tracker.webp" alt="Goal Tracker icon"></span><span class="num">02 / GOALS</span></div><h3 class="card-title" data-en="Goal Tracker" data-ar="متعقب الأهداف">Goal Tracker</h3><p class="card-desc" data-en="Turn missions into milestones." data-ar="حوّل المهمات إلى إنجازات.">Turn missions into milestones.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="03_Session_Planner.html" style="--accent:#ff58c8"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/03_Session_Planner.webp" alt="Session Planner icon"></span><span class="num">03 / TIMER</span></div><h3 class="card-title" data-en="Session Planner" data-ar="مخطط الجلسة">Session Planner</h3><p class="card-desc" data-en="Build your play plan and start the clock." data-ar="جهّز خطة اللعب وشغّل المؤقت.">Build your play plan and start the clock.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="04_Backup_Restore.html" style="--accent:#79e6a7"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/04_Backup_Restore.webp" alt="Backup and Restore icon"></span><span class="num">04 / DATA</span></div><h3 class="card-title" data-en="Backup & Restore" data-ar="حفظ واستعادة">Backup & Restore</h3><p class="card-desc" data-en="Keep your progress safe and portable." data-ar="احتفظ بتقدمك واستعده وقتما تريد.">Keep your progress safe and portable.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
-<a class="card" href="05_Interactive_Map.html" style="--accent:#8a9bff"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/05_Interactive_Map.webp" alt="Interactive map icon"></span><span class="num">05 / MAP</span></div><h3 class="card-title" data-en="Interactive Map" data-ar="الخريطة التفاعلية">Interactive Map</h3><p class="card-desc" data-en="Explore locations and map resources." data-ar="استكشف المواقع ومصادر الخرائط.">Explore locations and map resources.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
+<a class="card" href="#map" aria-label="Open interactive map" style="--accent:#8a9bff"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/05_Interactive_Map.webp" alt="Interactive map icon"></span><span class="num">05 / MAP</span></div><h3 class="card-title" data-en="Interactive Map" data-ar="الخريطة التفاعلية">Interactive Map</h3><p class="card-desc" data-en="Explore locations and map resources." data-ar="استكشف المواقع ومصادر الخرائط.">Explore locations and map resources.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="06_GTA_V_Videos.html" style="--accent:#ff8e65"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/06_Videos.webp" alt="Videos icon"></span><span class="num">06 / MEDIA</span></div><h3 class="card-title" data-en="Video Zone" data-ar="منطقة الفيديوهات">Video Zone</h3><p class="card-desc" data-en="Guides, secrets, missions and gameplay." data-ar="شروحات وأسرار ومهمات ولقطات لعب.">Guides, secrets, missions and gameplay.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 </section>
 <footer class="footer"><span>LEONIDA HQ · FAN PROJECT</span><span>NOT AFFILIATED WITH ROCKSTAR GAMES</span><a href="privacy-policy.html" style="color:#55e6ff;text-decoration:none;font-weight:800" data-en="PRIVACY" data-ar="الخصوصية">PRIVACY</a></footer>
 </main>
+<section class="map-view" id="mapView" aria-label="Interactive GTA map">
+ <div class="map-toolbar">
+  <a class="map-back" href="./" data-en="← HOME" data-ar="العودة للرئيسية ←">← HOME</a>
+  <div class="map-title" data-en="LEONIDA HQ · INTERACTIVE MAP" data-ar="LEONIDA HQ · الخريطة التفاعلية">LEONIDA HQ · INTERACTIVE MAP</div>
+  <a class="map-open" href="intent://sixintelhq.com/map#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url=https%3A%2F%2Fsixintelhq.com%2Fmap;end" data-en="FULL MAP ↗" data-ar="الخريطة كاملة ↗">FULL MAP ↗</a>
+  <button class="map-lang" type="button" id="mapLangBtn">عربي</button>
+ </div>
+ <iframe class="map-frame" src="https://sixintelhq.com/embed" title="GTA VI interactive map" loading="eager" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</section>
 <script>
-const btn=document.getElementById('langBtn');let lang='en';
+const btn=document.getElementById('langBtn'),mapBtn=document.getElementById('mapLangBtn');let lang='en';
 try{lang=localStorage.getItem('LEONIDA_HQ_LANGUAGE')||'en'}catch(e){}
-function applyLang(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-en][data-ar]').forEach(el=>{el.textContent=el.dataset[lang]});btn.textContent=lang==='ar'?'English':'عربي'}
-btn.addEventListener('click',()=>{lang=lang==='en'?'ar':'en';try{localStorage.setItem('LEONIDA_HQ_LANGUAGE',lang)}catch(e){}applyLang()});applyLang();
+function applyLang(){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-en][data-ar]').forEach(el=>{el.textContent=el.dataset[lang]});btn.textContent=lang==='ar'?'English':'عربي';if(mapBtn)mapBtn.textContent=lang==='ar'?'English':'عربي'}
+function toggleLang(){lang=lang==='en'?'ar':'en';try{localStorage.setItem('LEONIDA_HQ_LANGUAGE',lang)}catch(e){}applyLang()}
+btn.addEventListener('click',toggleLang);if(mapBtn)mapBtn.addEventListener('click',toggleLang);
+function route(){const showMap=location.hash.toLowerCase()==='#map';document.querySelector('.shell').hidden=showMap;document.getElementById('mapView').style.display=showMap?'flex':'none';document.body.classList.toggle('map-active',showMap);if(!showMap)window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);applyLang();route();
 </script>
 </body></html>
