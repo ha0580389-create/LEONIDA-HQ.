@@ -1,69 +1,14 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080914">
 <title>LEONIDA HQ — Interactive Map</title>
-<style>
-:root{--bg:#080914;--line:#34385d;--cyan:#39d9ff;--gold:#ffc857;--text:#f7f7ff;--muted:#aeb4d1}
-*{box-sizing:border-box}
-html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font:14px Arial,sans-serif}
-body{height:100vh;height:100dvh;display:flex;flex-direction:column;padding:0}
-.top{height:52px;min-height:52px;flex:0 0 52px;display:flex;align-items:center;gap:8px;padding:6px 9px;background:linear-gradient(100deg,#12162b,#201638);border-bottom:1px solid var(--line);box-shadow:0 3px 12px #0008}
-.module-icon{width:32px;height:32px;flex:none;object-fit:cover;border-radius:9px;border:1px solid #ffffff33}
-.brand{flex:1;min-width:0;font-size:15px;font-weight:900;letter-spacing:1px;text-shadow:0 0 10px var(--cyan);white-space:nowrap}
-.brand span{color:var(--gold)}
-.actions{display:flex;align-items:center;gap:6px}
-.open-full,.privacy-shortcut,.lang{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;color:#fff;text-decoration:none;font-weight:800;white-space:nowrap}
-.open-full{padding:9px 10px;font-size:11px;background:linear-gradient(100deg,#146c9c,#7143a8);border:1px solid #6b83bd}
-.privacy-shortcut{padding:7px 8px;font-size:10px;color:var(--muted);background:#11172a;border:1px solid #41496d}
-.lang{padding:7px 9px;font-size:11px;background:#171b32;border:1px solid #6a6e9a;cursor:pointer}
-.map-frame{position:relative;flex:1 1 auto;min-height:0;width:100%;overflow:hidden;background:#090f20}
-.map-frame iframe{display:block;width:100%;height:100%;min-height:100%;border:0;background:#090f20}
-@media(max-width:360px){.top{gap:5px;padding-inline:6px}.module-icon{width:28px;height:28px}.brand{font-size:13px}.open-full{font-size:10px;padding:8px 7px}.privacy-shortcut{font-size:9px;padding:6px}.lang{padding:6px 7px}}
-</style>
-<script>
-(function(){
- const KEY='LEONIDA_HQ_LANGUAGE';
- function cookieLang(){try{const m=document.cookie.match(new RegExp('(?:^|; )'+KEY+'=(ar|en)'));return m?m[1]:null}catch(e){return null}}
- function readLang(){try{const v=localStorage.getItem(KEY);if(v==='ar'||v==='en')return v}catch(e){}return cookieLang()||'en'}
- let lang=readLang();
- window.LHQ_T=(ar,en)=>lang==='ar'?ar:en;
- window.LHQ_LANG=()=>lang;
- window.LHQ_APPLY=function(){
-  document.documentElement.lang=lang;
-  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
-  document.querySelectorAll('[data-ar][data-en]').forEach(el=>{el.textContent=el.getAttribute(lang==='ar'?'data-ar':'data-en')});
-  const b=document.getElementById('languageToggle');
-  if(b)b.textContent=lang==='ar'?'EN':'ع';
- };
- window.LHQ_TOGGLE=function(){
-  lang=lang==='en'?'ar':'en';
-  try{localStorage.setItem(KEY,lang)}catch(e){}
-  try{document.cookie=KEY+'='+lang+';path=/;max-age=31536000;SameSite=Lax'}catch(e){}
-  window.LHQ_APPLY();
- };
- document.addEventListener('DOMContentLoaded',window.LHQ_APPLY);
-})();
-</script>
+<meta http-equiv="refresh" content="0;url=./index.html#map">
+<script>window.location.replace('./index.html#map');</script>
 </head>
-<body>
-<header class="top">
- <img class="module-icon" src="assets/icons/05_Interactive_Map.webp" alt="">
- <div class="brand">LEONIDA <span>HQ</span></div>
- <div class="actions">
-  <a class="open-full" href="intent://sixintelhq.com/map#Intent;scheme=https;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;S.browser_fallback_url=https%3A%2F%2Fsixintelhq.com%2Fmap;end" data-ar="فتح الخريطة كاملة ↗" data-en="Open full map ↗">Open full map ↗</a>
-  <a class="privacy-shortcut" href="privacy-policy.html">Privacy</a>
-  <button id="languageToggle" class="lang" type="button">ع</button>
- </div>
-</header>
-<main class="map-frame" aria-label="GTA VI interactive map">
- <iframe src="https://sixintelhq.com/embed" title="GTA VI interactive map" loading="eager" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-</main>
-<script>
-document.getElementById('languageToggle').addEventListener('click',LHQ_TOGGLE);
-LHQ_APPLY();
-</script>
+<body style="margin:0;background:#080914;color:#fff;font:16px Arial,sans-serif;padding:24px">
+<a href="./index.html#map" style="color:#55e6ff">Open the map inside LEONIDA HQ</a>
 </body>
 </html>
