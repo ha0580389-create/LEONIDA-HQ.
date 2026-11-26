@@ -35,8 +35,11 @@ h1{margin:17px 0 11px;font-size:clamp(32px,7.7vw,58px);letter-spacing:-1.8px;lin
 .card-bottom{margin-top:auto;padding-top:12px;display:flex;justify-content:space-between;align-items:center;color:var(--accent);font-size:10px;font-weight:1000;letter-spacing:1.2px}
 .arrow{font-size:17px;line-height:1}
 .footer{margin:24px 2px 4px;padding:15px 2px 5px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;color:#76819e;font-size:9px;letter-spacing:1px}
-.community-icon{display:grid;place-items:center;background:linear-gradient(145deg,#10172d,#211b3d)}
-.community-icon svg{display:block;width:100%;height:100%}
+.community-icon{display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#273e68 0,#111a32 52%,#090e1d 100%);border:1px solid rgba(85,230,255,.65);box-shadow:0 0 0 3px rgba(85,230,255,.08),0 0 24px rgba(85,230,255,.25),0 8px 22px #0009}
+.community-icon svg{display:block;width:100%;height:100%;filter:drop-shadow(0 0 9px rgba(85,230,255,.22))}
+.community-card{border-color:rgba(85,230,255,.38);background:radial-gradient(ellipse at 15% 8%,rgba(85,230,255,.10),transparent 48%),linear-gradient(145deg,rgba(25,36,64,.98),rgba(16,16,39,.98))}
+.community-card .card-title{color:#f4fbff}
+.community-card .card-bottom{color:#55e6ff;text-shadow:0 0 9px rgba(85,230,255,.35)}
 
 .map-view{display:none;position:fixed;inset:0;z-index:1000;width:100%;height:100vh;height:100dvh;min-height:0;background:#080914;flex-direction:column;overflow:hidden}
 .map-toolbar{flex:0 0 auto;min-height:54px;display:flex;align-items:center;gap:8px;padding:7px 10px;background:linear-gradient(100deg,#12162b,#201638);border-bottom:1px solid #34385d}
@@ -72,7 +75,27 @@ body.map-active{overflow:hidden}
 <a class="card" href="04_Backup_Restore.html" style="--accent:#79e6a7"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/04_Backup_Restore.webp" alt="Backup and Restore icon"></span><span class="num">04 / DATA</span></div><h3 class="card-title" data-en="Backup & Restore" data-ar="حفظ واستعادة">Backup & Restore</h3><p class="card-desc" data-en="Keep your progress safe and portable." data-ar="احتفظ بتقدمك واستعده وقتما تريد.">Keep your progress safe and portable.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="#map" aria-label="Open interactive map" style="--accent:#8a9bff"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/05_Interactive_Map.webp" alt="Interactive map icon"></span><span class="num">05 / MAP</span></div><h3 class="card-title" data-en="Interactive Map" data-ar="الخريطة التفاعلية">Interactive Map</h3><p class="card-desc" data-en="Explore locations and map resources." data-ar="استكشف المواقع ومصادر الخرائط.">Explore locations and map resources.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="06_GTA_V_Videos.html" style="--accent:#ff8e65"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/06_Videos.webp" alt="Videos icon"></span><span class="num">06 / MEDIA</span></div><h3 class="card-title" data-en="Video Zone" data-ar="منطقة الفيديوهات">Video Zone</h3><p class="card-desc" data-en="Guides, secrets, missions and gameplay." data-ar="شروحات وأسرار ومهمات ولقطات لعب.">Guides, secrets, missions and gameplay.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
-<a class="card community-card" href="ac24://open4253967-ohgex7/community" id="communityButton" style="--accent:#55e6ff"><div class="card-top"><span class="icon-wrap community-icon"><img src="assets/icons/07_Community.webp" alt="LEONIDA Community logo"></span><span class="num">07 / COMMUNITY</span></div><h3 class="card-title" data-en="Community Chat" data-ar="دردشة المجتمع">Community Chat</h3><p class="card-desc" data-en="Meet GTA fans, talk about missions, secrets and updates." data-ar="تواصل مع محبي GTA وتبادل الحديث عن المهمات والأسرار والتحديثات.">Meet GTA fans, talk about missions, secrets and updates.</p><span class="card-bottom"><span data-en="CONNECT CHAT" data-ar="افتح الدردشة">CONNECT CHAT</span><span class="arrow">↗</span></span></a>
+<a class="card community-card" href="ac24://open4253967-ohgex7/community" id="communityButton" style="--accent:#55e6ff"><div class="card-top"><span class="icon-wrap community-icon" aria-label="LEONIDA Community logo">
+<svg viewBox="0 0 100 100" role="img" aria-label="LEONIDA Community">
+ <defs>
+  <linearGradient id="lcBubble" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#55e6ff"/><stop offset=".56" stop-color="#8c61ff"/><stop offset="1" stop-color="#ff58c8"/></linearGradient>
+  <linearGradient id="lcGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe7a3"/><stop offset="1" stop-color="#ffc76b"/></linearGradient>
+  <filter id="lcGlow"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ </defs>
+ <rect x="2" y="2" width="96" height="96" rx="22" fill="#0b1023"/>
+ <circle cx="50" cy="46" r="37" fill="#172343" stroke="#55e6ff" stroke-opacity=".3" stroke-width="1.5"/>
+ <path d="M50 8l4.6 8.7 9.7 1.4-7.1 6.9 1.7 9.7L50 30.1l-8.9 4.6 1.7-9.7-7.1-6.9 9.7-1.4z" fill="url(#lcGold)" filter="url(#lcGlow)"/>
+ <circle cx="50" cy="42" r="9" fill="url(#lcGold)"/>
+ <circle cx="30" cy="49" r="6.8" fill="#dbeaff"/>
+ <circle cx="70" cy="49" r="6.8" fill="#dbeaff"/>
+ <path d="M34 66c1.8-9.4 7.1-14 16-14s14.2 4.6 16 14" fill="#ffc76b"/>
+ <path d="M18 62c1.2-7 5-10.5 12-10.5 3.4 0 6.3 1.2 8.5 3.7-3.5 2.9-5.7 7.1-6.7 12.8H21c-2.1 0-3.5-2-3-6z" fill="#55e6ff"/>
+ <path d="M82 62c-1.2-7-5-10.5-12-10.5-3.4 0-6.3 1.2-8.5 3.7 3.5 2.9 5.7 7.1 6.7 12.8H79c2.1 0 3.5-2 3-6z" fill="#c17cff"/>
+ <path d="M16 71c0-6 4.8-10.8 10.8-10.8h46.4C79.2 60.2 84 65 84 71v12c0 6-4.8 10.8-10.8 10.8H48l-13 8V93.8h-8.2C20.8 93.8 16 89 16 83z" fill="#080d1c" stroke="url(#lcBubble)" stroke-width="3.5" filter="url(#lcGlow)" transform="translate(0 -5)"/>
+ <circle cx="39" cy="75" r="3.3" fill="#55e6ff"/>
+ <circle cx="50" cy="75" r="3.3" fill="#ffc76b"/>
+ <circle cx="61" cy="75" r="3.3" fill="#ff58c8"/>
+</svg></span><span class="num">07 / COMMUNITY</span></div><h3 class="card-title" data-en="Community Chat" data-ar="دردشة المجتمع">Community Chat</h3><p class="card-desc" data-en="Meet GTA fans, talk about missions, secrets and updates." data-ar="تواصل مع محبي GTA وتبادل الحديث عن المهمات والأسرار والتحديثات.">Meet GTA fans, talk about missions, secrets and updates.</p><span class="card-bottom"><span data-en="CONNECT CHAT" data-ar="افتح الدردشة">CONNECT CHAT</span><span class="arrow">↗</span></span></a>
 </section>
 <footer class="footer"><span>LEONIDA HQ · FAN PROJECT</span><span>NOT AFFILIATED WITH ROCKSTAR GAMES</span><a href="privacy-policy.html" style="color:#55e6ff;text-decoration:none;font-weight:800" data-en="PRIVACY" data-ar="الخصوصية">PRIVACY</a></footer>
 </main>
