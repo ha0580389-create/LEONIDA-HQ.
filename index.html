@@ -37,8 +37,6 @@ h1{margin:17px 0 11px;font-size:clamp(32px,7.7vw,58px);letter-spacing:-1.8px;lin
 .footer{margin:24px 2px 4px;padding:15px 2px 5px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;color:#76819e;font-size:9px;letter-spacing:1px}
 .community-icon{display:grid;place-items:center;background:linear-gradient(145deg,#10172d,#211b3d)}
 .community-icon svg{display:block;width:100%;height:100%}
-.chat-toast{position:fixed;z-index:1500;left:50%;bottom:22px;transform:translate(-50%,18px);width:min(92%,430px);padding:14px 16px;border:1px solid rgba(85,230,255,.35);border-radius:15px;background:rgba(14,20,39,.97);color:#f5f7ff;box-shadow:0 15px 45px #0009;font-size:13px;line-height:1.55;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
-.chat-toast.show{opacity:1;transform:translate(-50%,0)}
 
 .map-view{display:none;position:fixed;inset:0;z-index:1000;width:100%;height:100vh;height:100dvh;min-height:0;background:#080914;flex-direction:column;overflow:hidden}
 .map-toolbar{flex:0 0 auto;min-height:54px;display:flex;align-items:center;gap:8px;padding:7px 10px;background:linear-gradient(100deg,#12162b,#201638);border-bottom:1px solid #34385d}
@@ -74,9 +72,8 @@ body.map-active{overflow:hidden}
 <a class="card" href="04_Backup_Restore.html" style="--accent:#79e6a7"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/04_Backup_Restore.webp" alt="Backup and Restore icon"></span><span class="num">04 / DATA</span></div><h3 class="card-title" data-en="Backup & Restore" data-ar="حفظ واستعادة">Backup & Restore</h3><p class="card-desc" data-en="Keep your progress safe and portable." data-ar="احتفظ بتقدمك واستعده وقتما تريد.">Keep your progress safe and portable.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="#map" aria-label="Open interactive map" style="--accent:#8a9bff"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/05_Interactive_Map.webp" alt="Interactive map icon"></span><span class="num">05 / MAP</span></div><h3 class="card-title" data-en="Interactive Map" data-ar="الخريطة التفاعلية">Interactive Map</h3><p class="card-desc" data-en="Explore locations and map resources." data-ar="استكشف المواقع ومصادر الخرائط.">Explore locations and map resources.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
 <a class="card" href="06_GTA_V_Videos.html" style="--accent:#ff8e65"><div class="card-top"><span class="icon-wrap"><img src="assets/icons/06_Videos.webp" alt="Videos icon"></span><span class="num">06 / MEDIA</span></div><h3 class="card-title" data-en="Video Zone" data-ar="منطقة الفيديوهات">Video Zone</h3><p class="card-desc" data-en="Guides, secrets, missions and gameplay." data-ar="شروحات وأسرار ومهمات ولقطات لعب.">Guides, secrets, missions and gameplay.</p><span class="card-bottom"><span data-en="OPEN MODULE" data-ar="افتح القسم">OPEN MODULE</span><span class="arrow">↗</span></span></a>
-<a class="card community-card" href="#community" id="communityButton" style="--accent:#55e6ff"><div class="card-top"><span class="icon-wrap community-icon"><img src="assets/icons/07_Community.webp" alt="LEONIDA Community logo"></span><span class="num">07 / COMMUNITY</span></div><h3 class="card-title" data-en="Community Chat" data-ar="دردشة المجتمع">Community Chat</h3><p class="card-desc" data-en="Meet GTA fans, talk about missions, secrets and updates." data-ar="تواصل مع محبي GTA وتبادل الحديث عن المهمات والأسرار والتحديثات.">Meet GTA fans, talk about missions, secrets and updates.</p><span class="card-bottom"><span data-en="CONNECT CHAT" data-ar="افتح الدردشة">CONNECT CHAT</span><span class="arrow">↗</span></span></a>
+<a class="card community-card" href="ac24://open4253967-ohgex7/community" id="communityButton" style="--accent:#55e6ff"><div class="card-top"><span class="icon-wrap community-icon"><img src="assets/icons/07_Community.webp" alt="LEONIDA Community logo"></span><span class="num">07 / COMMUNITY</span></div><h3 class="card-title" data-en="Community Chat" data-ar="دردشة المجتمع">Community Chat</h3><p class="card-desc" data-en="Meet GTA fans, talk about missions, secrets and updates." data-ar="تواصل مع محبي GTA وتبادل الحديث عن المهمات والأسرار والتحديثات.">Meet GTA fans, talk about missions, secrets and updates.</p><span class="card-bottom"><span data-en="CONNECT CHAT" data-ar="افتح الدردشة">CONNECT CHAT</span><span class="arrow">↗</span></span></a>
 </section>
-<div id="chatToast" class="chat-toast" role="status" aria-live="polite" data-en="The chat button is ready. Connect your AppCreator24 chat deep link to activate it." data-ar="زر الدردشة جاهز. يلزم ربط رابط قسم الدردشة من AppCreator24 لتفعيله."></div>
 <footer class="footer"><span>LEONIDA HQ · FAN PROJECT</span><span>NOT AFFILIATED WITH ROCKSTAR GAMES</span><a href="privacy-policy.html" style="color:#55e6ff;text-decoration:none;font-weight:800" data-en="PRIVACY" data-ar="الخصوصية">PRIVACY</a></footer>
 </main>
 <section class="map-view" id="mapView" aria-label="Interactive GTA map">
@@ -95,13 +92,6 @@ function applyLang(){document.documentElement.lang=lang;document.documentElement
 function toggleLang(){lang=lang==='en'?'ar':'en';try{localStorage.setItem('LEONIDA_HQ_LANGUAGE',lang)}catch(e){}applyLang()}
 btn.addEventListener('click',toggleLang);if(mapBtn)mapBtn.addEventListener('click',toggleLang);
 function route(){const showMap=location.hash.toLowerCase()==='#map';document.querySelector('.shell').hidden=showMap;document.getElementById('mapView').style.display=showMap?'flex':'none';document.body.classList.toggle('map-active',showMap);if(!showMap)window.scrollTo(0,0)}
-const COMMUNITY_CHAT_DEEPLINK='';
-let chatToastTimer;
-document.getElementById('communityButton').addEventListener('click',function(ev){
- ev.preventDefault();
- if(COMMUNITY_CHAT_DEEPLINK){window.location.href=COMMUNITY_CHAT_DEEPLINK;return}
- const toast=document.getElementById('chatToast');toast.classList.add('show');clearTimeout(chatToastTimer);chatToastTimer=setTimeout(()=>toast.classList.remove('show'),4200);
-});
 window.addEventListener('hashchange',route);applyLang();route();
 </script>
 </body></html>
